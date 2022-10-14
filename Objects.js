@@ -87,9 +87,7 @@ function dictionary(items) {
             return -1;
         }
         else if (a.name > b.name)
-        {
             return 1;
-        }
         return 0;
     });
     let letter = '0';
@@ -119,6 +117,53 @@ function table(input){
     console.log(JSON.stringify(result));
 }
 
-function rect(text){
-
+function rectangle(width, height, color) {
+    return {
+        width: width,
+        height: height,
+        color: color.charAt(0).toUpperCase() + color.slice(1),
+        calcArea(){
+            return width * height;
+        }
+    }
 }
+
+function solve() {
+    return {
+        mage(name){
+            return {
+                name: name,
+                health: 100,
+                mana: 100,
+                cast(spell){
+                    this.mana--;
+                    console.log(`${this.name} cast ${spell}`);
+                }
+            }
+        },
+        fighter(name){
+            return {
+                name: name,
+                health: 100,
+                stamina: 100,
+                fight(){
+                    this.stamina--;
+                    console.log(`${this.name} slashes at the foe!`);
+                }
+            }
+        }
+    }
+}
+
+let create = solve();
+const scorcher = create.mage("Scorcher");
+scorcher.cast("fireball")
+scorcher.cast("thunder")
+scorcher.cast("light")
+
+const scorcher2 = create.fighter("Scorcher 2");
+scorcher2.fight()
+
+console.log(scorcher2.stamina);
+console.log(scorcher.mana);
+
